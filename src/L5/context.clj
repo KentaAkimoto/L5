@@ -43,7 +43,9 @@
                          KeyEvent/VK_LEFT       [#(slide/prev-slide context)]
                          KeyEvent/VK_ENTER      [#(slide/next-slide context)]
                          KeyEvent/VK_SPACE      [#(slide/next-slide context)]
-                         KeyEvent/VK_RIGHT      [#(slide/next-slide context)] }))
+                         KeyEvent/VK_RIGHT      [#(slide/next-slide context)]
+                         KeyEvent/VK_UP         [#(slide/jump-slide context)]
+			 }))
       context))
 
 (defn build-panel [context]

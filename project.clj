@@ -1,5 +1,5 @@
 (defproject L5 "1.2.1-SNAPSHOT"
-  :author "深町英太郎(E. Fukamachi)"
+  :author "Kenta Akimoto (深町英太郎(E. Fukamachi))"
   :description "Yet Another Presentation with Clojure"
   :url "http://github.com/fukamachi/L5"
   :license {:name "MIT License"
@@ -16,7 +16,8 @@
   :dev-dependencies [[lein-run "1.0.0-SNAPSHOT"]
                      [lein-clojars "0.5.0"]
                      [swank-clojure "1.2.1"]]
-  :repositories {"clojars" "http://clojars.org/repo"
-                 "itextpdf" "http://maven.itextpdf.com/"}
+  :repositories {"itextpdf" "http://maven.itextpdf.com/"}
+;;  :repositories {"clojars" "http://clojars.org/repo"
+;;                 "itextpdf" "http://maven.itextpdf.com/"}
   :uberjar-name "L5.jar"
   :resources-path "resource")

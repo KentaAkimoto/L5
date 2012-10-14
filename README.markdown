@@ -1,6 +1,11 @@
 # L5 - Yet Another Presentation Tool for Lispers
 
+This application is forked from the L5(author:Mr. Fukamachi) by Kenta Akimoto.
+
 This application is a presentation tool written in Clojure. You can create slides with S-expression. See a sample files under _sample_ directory for example.
+
+## added features by me
+- Page jumping (press a up key)
 
 ## Installation
 
@@ -50,5 +55,5 @@ Press &lt;E&gt; on the presentation frame.
 
 ## License
 
-Copyright (c) 2010-2011 深町英太郎 (E.Fukamachi).  
+Copyright (c) 2012 Kenta Akimoto (2010-2011 深町英太郎 (E.Fukamachi)).  
 Licensed under the MIT License (http://www.opensource.org/licenses/mit-license.php)

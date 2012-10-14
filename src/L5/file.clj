@@ -1,8 +1,9 @@
 (ns L5.file
   (:require [clojure.contrib.io :as io]
-            [clojure.contrib.string :as string])
+            [clojure.contrib.string :as string]
+	    [clojure.string :as string2])
   (:import [java.io File]
-           [javax.swing JFrame JPanel JLabel JButton JFileChooser SwingConstants]
+           [javax.swing JFrame JPanel JLabel JButton JFileChooser JTextField JDialog SwingConstants]
            [javax.swing.filechooser FileNameExtensionFilter]
            [java.awt GridLayout]
            [java.awt.event ActionListener]))
@@ -76,10 +77,43 @@
         (.add (JLabel. "<html><p style=\"font-weight: bold; padding-left: 20px;\">Welcome to L5!</p></html>"))
         (.add create-button)
         (.add open-button)
-        (.add (doto (JLabel. "<html><p style=\"font-size: x-small;\">Copyright (c) 2010-2011 深町英太郎</p></html>")
+        (.add (doto (JLabel. "<html><p style=\"font-size: x-small;\">Copyright (c) 2012 Kenta Akimoto (2010-2011 深町英太郎)</p></html>")
                 (.setHorizontalAlignment SwingConstants/CENTER)))))
     (doto frame
       (.add panel)
       (.setSize 250 180)
       (.setDefaultCloseOperation JFrame/EXIT_ON_CLOSE)
+      (.setVisible true))))
+
+(defn open-jump-chooser [name current-idx slides-max-count callback]
+  (let [frame (JFrame. name)
+        panel (JPanel. (GridLayout. 4 1))
+	text-field (JTextField.)
+        jump-action (proxy [ActionListener] []
+                        (actionPerformed [e]
+                          (callback 
+			    (. Integer parseInt 
+			    (.. text-field getText))
+			    )))]
+	
+    (let [jump-button (JButton. "Jump")]
+      (.addActionListener jump-button jump-action)
+      (doto panel
+        (.add (JLabel. (string2/join 
+	  "" ["<html>" 
+	       "<p style=\"font-weight: bold; padding-left: 20px;\">"
+	       "Input a number of pages that you want to jump"
+	       " ( 0 - "
+	       (- slides-max-count 1)
+	       " )"
+	       "</p></html>"])))
+	(.add text-field)
+	(.add jump-button)))
+    (doto text-field
+      (.setColumns 3)
+      (.setText (. String valueOf current-idx)))
+    (doto frame
+      (.add panel)
+      (.setSize 250 180)
+      (.setDefaultCloseOperation JFrame/DISPOSE_ON_CLOSE)
       (.setVisible true))))

@@ -1,4 +1,5 @@
 (ns L5.slide
+  (:require [L5.file :as file])
   (:import [java.awt Graphics2D Font RenderingHints GraphicsEnvironment Color Point]
            [java.awt.font LineBreakMeasurer TextAttribute TextLayout]
            [java.awt.geom AffineTransform GeneralPath]
@@ -195,3 +196,10 @@
   (when (>= (- @idx 1) 0)
     (dosync (alter idx dec))
     (repaint context)))
+
+(defn jump-slide [{slides :slides idx :current :as context}]
+  (file/open-jump-chooser "jump" @idx (count @slides) #(do
+    (println (count @slides))
+    (eval (let [new-idx %]
+    (dosync (ref-set idx new-idx))
+    (repaint context))))))
